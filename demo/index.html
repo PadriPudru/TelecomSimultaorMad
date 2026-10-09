@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UrbanRF Twin · Madrid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="labels"></div>
+
+  <header class="topbar glass">
+    <div class="brand">
+      <span class="logo"><i></i><i></i><i></i></span>
+      <div><b>UrbanRF Twin</b><small>Gemelo digital RF · Madrid Centro</small></div>
+    </div>
+    <div class="seg" id="bandSeg">
+      <button data-band="low">700 MHz</button>
+      <button data-band="mid" class="on">3,5 GHz</button>
+      <button data-band="mmw">26 GHz</button>
+    </div>
+    <div class="clock">
+      <button id="playBtn" class="icon" title="Pausar / reanudar simulación">❚❚</button>
+      <span id="clock" class="mono">14:00</span>
+      <span class="live"><i></i>EN VIVO</span>
+    </div>
+  </header>
+
+  <aside class="panel left glass">
+    <section>
+      <h3>Capas</h3>
+      <label class="tog"><input type="checkbox" data-layer="coverage" checked /><span></span>Mapa de cobertura</label>
+      <label class="tog"><input type="checkbox" data-layer="waves" checked /><span></span>Frentes de onda</label>
+      <label class="tog"><input type="checkbox" data-layer="rays" checked /><span></span>Trazado de rayos</label>
+      <label class="tog"><input type="checkbox" data-layer="ghost" /><span></span>Edificios translúcidos</label>
+    </section>
+    <section>
+      <h3>Métrica</h3>
+      <div class="seg small" id="metricSeg">
+        <button data-metric="rsrp" class="on">RSRP</button>
+        <button data-metric="sinr">SINR</button>
+      </div>
+    </section>
+    <section>
+      <h3>Herramientas</h3>
+      <button class="btn" id="placeBtn">＋ Colocar antena</button>
+      <button class="btn accent" id="optBtn">✦ Optimizar ubicación (IA)</button>
+      <button class="btn ghost" id="viewBtn">⟲ Vista general</button>
+    </section>
+    <section>
+      <h3>Indicadores de red</h3>
+      <div class="kpis">
+        <div class="kpi"><span>Cobertura</span><b id="kCov">–</b><em id="kCovD"></em></div>
+        <div class="kpi"><span>RSRP medio</span><b id="kRsrp">–</b></div>
+        <div class="kpi"><span>SINR medio</span><b id="kSinr">–</b></div>
+        <div class="kpi"><span>Antenas activas</span><b id="kAnt">–</b></div>
+      </div>
+      <div class="spark">
+        <div class="spark-h"><span>Tráfico agregado</span><b id="kLoad" class="mono">–</b></div>
+        <canvas id="spark" width="460" height="96"></canvas>
+      </div>
+    </section>
+  </aside>
+
+  <aside class="panel right glass" id="inspector"></aside>
+  <section id="alerts"></section>
+
+  <div id="legend" class="glass"></div>
+  <div id="tooltip" class="glass"></div>
+  <div id="busy" class="glass"><i></i>Recalculando propagación…</div>
+  <div id="hint" class="glass">Haz clic sobre un tejado para instalar la antena · <kbd>Esc</kbd> para cancelar</div>
+  <div id="toast"></div>
+  <div class="badge">DEMO · física simplificada · datos sintéticos</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

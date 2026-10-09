@@ -1,0 +1,12 @@
+# Dependencias y artefactos de build
+node_modules/
+dist/
+
+# Entorno Python local (Sionna RT, ~600 MB)
+.venv/
+__pycache__/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
